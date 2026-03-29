@@ -88,8 +88,6 @@ Resultado:
 
 ✅ Conta encontrada com usuário e senha da lista.
 
-Observação: O comando original gerava warnings de “Invalid method”. A sintaxe acima é a versão corrigida e funcional.
-
 ### 5. Ataque em Cadeia: Enumeração SMB + Password Spraying
 
 ```bash
@@ -126,7 +124,6 @@ Monitoramento de logs (falhas de login)
 Uso de chaves SSH no lugar de senhas
 Atualização constante de serviços (ex: vsftpd, Samba)
 Uso de CAPTCHA em formulários públicos
-
 
 
 
