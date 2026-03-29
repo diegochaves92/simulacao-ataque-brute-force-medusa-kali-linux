@@ -52,10 +52,10 @@ nmap -sV -p- 192.168.56.101
 ```
 Resultado principal:
 
-FTP (21) → vsftpd 2.3.4
-SSH (22)
-HTTP (80) → Apache
-SMB (445) → Samba
+|FTP (21) → vsftpd 2.3.4  |
+|SSH (22)                 |
+|HTTP (80) → Apache       |
+|SMB (445) → Samba        |
 
 ### 2. Criação de Wordlists Simples
 
@@ -112,18 +112,27 @@ smbclient -L //192.168.56.101 -U msfadmin
 ```
 Compartilhamentos encontrados:
 
-print$, tmp, opt, IPC$, ADMIN$, msfadmin
+|print$  | 
+|tmp     |
+|opt     |
+|IPC$    |
+|ADMIN$  |
+|msfadmin|
 
 🛡️ Recomendações de Mitigação
 
-Bloqueio de contas após X tentativas falhas (Fail2Ban / account lockout)
-Política de senhas fortes (mínimo 12 caracteres, complexidade)
-2FA / MFA em todos os serviços
-Rate limiting em formulários web
-Monitoramento de logs (falhas de login)
-Uso de chaves SSH no lugar de senhas
-Atualização constante de serviços (ex: vsftpd, Samba)
-Uso de CAPTCHA em formulários públicos
+## 🛡️ Recomendações de Mitigação
+
+| Medida de Mitigação                              | 
+|--------------------------------------------------|
+| Bloqueio de conta após tentativas falhas         | 
+| Política de senhas fortes                        | 
+| Ativar 2FA/MFA em todos os serviços              | 
+| Rate limiting + CAPTCHA                          | 
+| Monitoramento de logs de falhas de login         | 
+| Preferir chaves SSH ao invés de senhas           | 
+| Manter serviços sempre atualizados               | 
+| Uso de UFW + Fail2Ban                            | 
 
 
 
