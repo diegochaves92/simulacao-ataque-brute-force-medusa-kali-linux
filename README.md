@@ -110,7 +110,7 @@ Resultado:
 ```bash
 smbclient -L //192.168.56.101 -U msfadmin
 ```
-Compartilhamentos encontrados:
+Compartilhamentos encontrados
 |--------|
 |print$  | 
 |tmp     |
@@ -120,9 +120,6 @@ Compartilhamentos encontrados:
 |msfadmin|
 
 🛡️ Recomendações de Mitigação
-
-## 🛡️ Recomendações de Mitigação
-
 |--------------------------------------------------|
 | Bloqueio de conta após tentativas falhas         | 
 | Política de senhas fortes                        | 
