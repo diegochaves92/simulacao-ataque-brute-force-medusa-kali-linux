@@ -1,6 +1,6 @@
 # 🛡️ Simulando um Ataque de Brute Force com Medusa no Kali Linux
 
-**Projeto Bootcamp DIO - Ethical Hacking / Cybersecurity**
+**Projeto Bootcamp DIO - Riachuelo / Cibersegurança**
 
 Documentação completa da simulação de ataques de força bruta utilizando a ferramenta **Medusa** em ambiente controlado (Kali Linux + Metasploitable 2 + DVWA).
 
@@ -51,7 +51,7 @@ Demonstrar na prática os principais tipos de ataques de senhas e como realizar 
 nmap -sV -p- 192.168.56.101
 ```
 Resultado principal:
-
+|-------------------------|
 |FTP (21) → vsftpd 2.3.4  |
 |SSH (22)                 |
 |HTTP (80) → Apache       |
@@ -111,7 +111,7 @@ Resultado:
 smbclient -L //192.168.56.101 -U msfadmin
 ```
 Compartilhamentos encontrados:
-
+|--------|
 |print$  | 
 |tmp     |
 |opt     |
@@ -123,7 +123,6 @@ Compartilhamentos encontrados:
 
 ## 🛡️ Recomendações de Mitigação
 
-| Medida de Mitigação                              | 
 |--------------------------------------------------|
 | Bloqueio de conta após tentativas falhas         | 
 | Política de senhas fortes                        | 
